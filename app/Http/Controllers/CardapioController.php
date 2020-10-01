@@ -22,8 +22,8 @@ class CardapioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function teste()
+    public function teste($id)
     {
-       echo "Oi";
+       echo $id;
     }
 }
