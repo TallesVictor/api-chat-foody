@@ -20,20 +20,15 @@ Route::group([
     Route::post('signup', 'AuthController@signup');
 
     Route::group([
-      'middleware' => 'auth:api'
-    ], function() {
+        'middleware' => 'auth:api'
+    ], function () {
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
     });
-
 });
+
 Route::group([
     'prefix' => 'cardapio'
 ], function () {
-    Route::group([
-      'middleware' => 'auth:api'
-    ], function() {
-        Route::get('/{id}', 'CardapioController@teste');
-    });
-
+    Route::get('/{id}', 'CardapioController@teste');
 });
