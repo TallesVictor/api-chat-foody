@@ -13,5 +13,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user/1', 'CardapioController@teste');
+Route::middleware('auth:api')->get('/user/1', 'CardapioController@teste');
 Route::any('/items/{id}', 'CardapioController@teste');
