@@ -24,6 +24,6 @@ class CardapioController extends Controller
      */
     public function teste($id)
     {
-       return $id->json();
+       return json_encode($id);
     }
 }
