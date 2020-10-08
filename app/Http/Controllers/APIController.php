@@ -18,5 +18,6 @@ class APIController extends Controller
         curl_close($ch);
         header('Content-type: application/json');
         echo $json;
+
     }
 }
