@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('cnpj/{cnpj}', 'APIController@cnpj');
+
 Route::group([
     'prefix' => 'auth'
 ], function () {
@@ -32,3 +34,4 @@ Route::group([
 ], function () {
     Route::get('/{id}', 'CardapioController@teste');
 });
+
