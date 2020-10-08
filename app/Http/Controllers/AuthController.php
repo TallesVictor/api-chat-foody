@@ -48,7 +48,11 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        dd($request->all());
+        $json= $request->all();
+        if(!$json){
+           return response('JSON Inválido', 401);
+        }
+        dd($json);
 
         // $request->validate([
         //     'email' => 'required|string|email',
