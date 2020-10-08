@@ -22,8 +22,12 @@ class CardapioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function teste($id)
+    public function teste(Request $request)
     {
-       return json_encode($id);
+        $json= $request->all();
+        if(!$json){
+           return response('JSON Inválido', 401);
+        }
+        dd($json);
     }
 }

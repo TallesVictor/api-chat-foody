@@ -32,6 +32,7 @@ Route::group([
 Route::group([
     'prefix' => 'cardapio'
 ], function () {
-    Route::get('/{id}', 'CardapioController@teste');
+    // Route::get('/{id}', 'CardapioController@teste');
+    Route::post('/', 'CardapioController@teste');
 });
 
