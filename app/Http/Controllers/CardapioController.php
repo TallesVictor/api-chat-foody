@@ -28,6 +28,6 @@ class CardapioController extends Controller
         if(!$json){
            return response('JSON Inválido', 401);
         }
-        dd($json);
+        return $json;
     }
 }
