@@ -27,6 +27,14 @@ Route::group([
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
     });
+
+    Route::group([
+        'prefix' => 'restaurante',
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::post('/salvar', 'RestauranteController@insert');
+    });
+
 });
 
 Route::group([
@@ -35,4 +43,6 @@ Route::group([
     // Route::get('/{id}', 'CardapioController@teste');
     Route::post('/', 'CardapioController@teste');
 });
+
+
 

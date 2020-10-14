@@ -30,4 +30,5 @@ class CardapioController extends Controller
         }
         return $json;
     }
+
 }
