@@ -28,13 +28,6 @@ Route::group([
         Route::get('user', 'AuthController@user');
     });
 
-    Route::group([
-        'prefix' => 'restaurante',
-        'middleware' => 'auth:api'
-    ], function () {
-        Route::post('/salvar', 'RestauranteController@insert');
-    });
-
 });
 
 Route::group([
@@ -44,5 +37,11 @@ Route::group([
     Route::post('/', 'CardapioController@teste');
 });
 
+Route::group([
+    'prefix' => 'restaurante',
+    'middleware' => 'auth:api'
+], function () {
+    Route::post('/salvar', 'RestauranteController@insert');
+});
 
 
