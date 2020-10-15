@@ -1,0 +1,14 @@
+id
+proprietario
+razao_social
+cnpj
+telefone
+cep
+estado
+cidade
+rua
+numero
+complemento
+descricao
+created_at
+updated_at
