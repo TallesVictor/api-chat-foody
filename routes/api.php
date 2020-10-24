@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('cnpj/{cnpj}', 'APIController@cnpj');
 
+
 Route::group([
     'prefix' => 'auth'
 ], function () {
@@ -27,23 +28,43 @@ Route::group([
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
     });
-
 });
 
 Route::group([
     'prefix' => 'cardapio'
 ], function () {
-    // Route::get('/{id}', 'CardapioController@teste');
     Route::post('/', 'CardapioController@teste');
+    Route::get('/{restaurante}/{codigo}/{cardapio}', 'CardapioController@search');
+
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::get('/{cnpj}', 'CardapioController@list');
+        Route::put('/salvar', 'CardapioController@insert');
+        Route::post('/alterar', 'CardapioController@alterar');
+        Route::delete('/apagar/{codigo}', 'CardapioController@apagar');
+    });
+});
+Route::group([
+    'prefix' => 'prato'
+], function () {
+    Route::get('/{id}', 'PratoController@list');
+    Route::get('listItens/{id}', 'PratoController@listItens');
+
+
+    Route::post('create', 'PratoController@create');
+    Route::delete('deleteIngrediente/{prato}/{ingrediente}', 'PratoController@deleteIngrediente');
+    Route::delete('/{id}', 'PratoController@del');
+
 });
 
 Route::group([
     'prefix' => 'restaurante',
     'middleware' => 'auth:api'
 ], function () {
+    Route::get('/', 'RestauranteController@list');
+    Route::delete('/{codigo}', 'RestauranteController@apagar');
     Route::post('/salvar', 'RestauranteController@insert');
+    Route::get('/buscar/{parametro}', 'RestauranteController@search');
+    Route::put('/alterar', 'RestauranteController@alterar');
 });
-
-
-
-
