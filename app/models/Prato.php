@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Validator;
 class Prato extends Model
 {
     protected $table = "prato";
-    protected $fillable = ['id', 'nome', 'preco', 'cardapio_id', 'created_at', 'updated_at'];
+    protected $fillable = ['id', 'nome', 'preco', 'cardapio_id', 'url', 'created_at', 'updated_at'];
     protected $hidden = ['id', 'cardapio_id', 'created_at', 'updated_at'];
 
     public function create(Request $request)
@@ -30,6 +30,10 @@ class Prato extends Model
             $erro->erro = $validator->errors();
             return response()
                 ->json($erro);
+        }
+
+        if (!$request->url) {
+            $request->url = null;
         }
 
         $request->created_at = date('Y-m-d');
@@ -64,9 +68,9 @@ class Prato extends Model
             $ingredientes[] = $result->ingrediente;
         }
 
-        $prato = "SELECT p.nome, p.preco FROM prato p WHERE p.id=?";
+        $prato = "SELECT p.nome, p.preco, p.url FROM prato p WHERE p.id=?";
         $prato = DB::select($prato, [$id]);
-        if($prato){
+        if ($prato) {
             $prato[0]->ingredientes = $ingredientes;
         }
         return  $prato;
