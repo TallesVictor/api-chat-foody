@@ -53,25 +53,32 @@ class Prato extends Model
         // $select = "SELECT p.nome, p.preco FROM prato p JOIN cardapio c ON c.id = p.cardapio_id WHERE c.id=?";
         // $select = DB::select($select, [$id]);
         // return $select;
+        $pratoAll= Array();
+        $select = DB::select("SELECT id FROM prato WHERE cardapio_id=?", [$id]);
+        for ($i = 0; $i < count($select); $i++) {
 
-        $selIngrediente = " SELECT i.nome as ingrediente
-        FROM prato p
-        JOIN ingrediente i ON p.id = i.prato_id
-        JOIN cardapio c ON c.id = p.cardapio_id
-        WHERE c.id=?";
-        $selIngrediente = DB::select($selIngrediente, [$id]);
-        $ingredientes = [];
 
-        foreach ($selIngrediente as $result) {
-            $ingredientes[] = $result->ingrediente;
+            $selIngrediente = " SELECT i.nome as ingrediente
+                                FROM prato p
+                                JOIN ingrediente i ON p.id = i.prato_id
+                                WHERE p.id=?";
+            $selIngrediente = DB::select($selIngrediente, [$select[$i]->id]);
+            $ingredientes = [];
+
+            foreach ($selIngrediente as $result) {
+                $ingredientes[] = $result->ingrediente;
+            }
+
+            $prato = "SELECT p.nome, p.preco, p.url FROM prato p WHERE p.id=?";
+            $prato = DB::select($prato, [$select[$i]->id]);
+            if ($prato) {
+                $prato[0]->ingredientes = $ingredientes;
+            }
+            $pratoAll[] = $prato;
+
+            array_push($pratoAll, $prato);
         }
-
-        $prato = "SELECT p.nome, p.preco, p.url FROM prato p WHERE p.id=?";
-        $prato = DB::select($prato, [$id]);
-        if ($prato) {
-            $prato[0]->ingredientes = $ingredientes;
-        }
-        return  $prato;
+        return  $pratoAll;
     }
 
     public function listItens($id)
