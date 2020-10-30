@@ -50,9 +50,28 @@ class Prato extends Model
 
     public function list($id)
     {
-        $select = "SELECT p.nome, p.preco FROM prato p JOIN cardapio c ON c.id = p.cardapio_id WHERE c.id=?";
-        $select = DB::select($select, [$id]);
-        return $select;
+        // $select = "SELECT p.nome, p.preco FROM prato p JOIN cardapio c ON c.id = p.cardapio_id WHERE c.id=?";
+        // $select = DB::select($select, [$id]);
+        // return $select;
+
+        $selIngrediente = " SELECT i.nome as ingrediente
+        FROM prato p
+        JOIN ingrediente i ON p.id = i.prato_id
+        JOIN cardapio c ON c.id = p.cardapio_id
+        WHERE c.id=?";
+        $selIngrediente = DB::select($selIngrediente, [$id]);
+        $ingredientes = [];
+
+        foreach ($selIngrediente as $result) {
+            $ingredientes[] = $result->ingrediente;
+        }
+
+        $prato = "SELECT p.nome, p.preco, p.url FROM prato p WHERE p.id=?";
+        $prato = DB::select($prato, [$id]);
+        if ($prato) {
+            $prato[0]->ingredientes = $ingredientes;
+        }
+        return  $prato;
     }
 
     public function listItens($id)
