@@ -74,7 +74,6 @@ class Prato extends Model
             if ($prato) {
                 $prato[0]->ingredientes = $ingredientes;
             }
-            $pratoAll[] = $prato;
 
             array_push($pratoAll, $prato);
         }
