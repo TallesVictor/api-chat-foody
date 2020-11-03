@@ -33,7 +33,6 @@ Route::group([
 Route::group([
     'prefix' => 'cardapio'
 ], function () {
-    Route::post('/', 'CardapioController@teste');
     Route::get('/{restaurante}/{codigo}/{cardapio}', 'CardapioController@search');
 
     Route::group([
@@ -59,12 +58,17 @@ Route::group([
 });
 
 Route::group([
-    'prefix' => 'restaurante',
-    'middleware' => 'auth:api'
+    'prefix' => 'restaurante'
 ], function () {
-    Route::get('/', 'RestauranteController@list');
-    Route::delete('/{codigo}', 'RestauranteController@apagar');
+
     Route::post('/salvar', 'RestauranteController@insert');
-    Route::get('/buscar/{parametro}', 'RestauranteController@search');
-    Route::put('/alterar', 'RestauranteController@alterar');
-});
+
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::get('/', 'RestauranteController@list');
+        Route::delete('/{codigo}', 'RestauranteController@apagar');
+        Route::get('/buscar/{parametro}', 'RestauranteController@search');
+        Route::put('/alterar', 'RestauranteController@alterar');
+        });
+  });
