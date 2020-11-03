@@ -20,18 +20,18 @@ class Restaurante extends Model
     public function insert(Request $request)
     {
 
-        echo "<br>" . '$proprietario-' . $proprietario = $request->proprietario;
-        echo "<br>" . '$razao_social-' . $razao_social = $request->razao_social;
-        echo "<br>" . '$cnpj-' . $cnpj = $request->cnpj;
-        echo "<br>" . '$telefone-' . $telefone = $request->telefone;
-        echo "<br>" . '$cep-' . $cep = $request->cep;
-        echo "<br>" . '$estado-' . $estado = $request->estado;
-        echo "<br>" . '$cidade-' . $cidade = $request->cidade;
-        echo "<br>" . '$rua-' . $rua = $request->rua;
-        echo "<br>" . '$numero-' . $numero = $request->numero;
-        echo "<br>" . '$complemento-' . $complemento = $request->complemento;
-        echo "<br>" . '$descricao-' . $descricao = $request->descricao;
-        echo "<br>" . '$usuario-' . $usuario = $request->usuario;
+        $proprietario = $request->proprietario;
+        $razao_social = $request->razao_social;
+        $cnpj = $request->cnpj;
+        $telefone = $request->telefone;
+        $cep = $request->cep;
+        $estado = $request->estado;
+        $cidade = $request->cidade;
+        $rua = $request->rua;
+        $numero = $request->numero;
+        $complemento = $request->complemento;
+        $descricao = $request->descricao;
+        $usuario = $request->usuario;
 
         return null;
         $insert = "INSERT INTO restaurante
