@@ -22,9 +22,9 @@ class Restaurante extends Model
 
         $proprietario = $request->proprietario;
         $razao_social = $request->razao_social;
-        $cnpj = $request->cnpj;
+        $cnpj = preg_replace('/[^0-9]/', '', $request->cnpj);
         $telefone = $request->telefone;
-        $cep = $request->cep;
+        $cep = preg_replace('/[^0-9]/', '', $request->cep);
         $estado = $request->estado;
         $cidade = $request->cidade;
         $rua = $request->rua;
