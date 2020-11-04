@@ -31,7 +31,7 @@ class Restaurante extends Model
         $numero = $request->numero;
         $complemento = $request->complemento;
         $descricao = $request->descricao;
-        $usuario = $request->email;
+        $usuario = $request->user;
 
         $insert = "INSERT INTO restaurante
          (proprietario, razao_social, cnpj, telefone, cep, estado, cidade, rua, numero, complemento, descricao, user_id, created_at, updated_at)

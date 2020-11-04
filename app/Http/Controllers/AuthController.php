@@ -9,7 +9,7 @@ use App\User;
 
 class AuthController extends Controller
 {
-     /**
+    /**
      * Create user
      *
      * @param  [string] name
@@ -31,8 +31,10 @@ class AuthController extends Controller
             'password' => bcrypt($request->password)
         ]);
         $user->save();
+
         return response()->json([
-            'message' => 'Successfully created user!'
+            'message' => 'Successfully created user!',
+            'user' => $user->id
         ], 201);
     }
 
@@ -54,7 +56,7 @@ class AuthController extends Controller
             'remember_me' => 'boolean'
         ]);
         $credentials = request(['email', 'password']);
-        if(!Auth::attempt($credentials))
+        if (!Auth::attempt($credentials))
             return response()->json([
                 'message' => 'Unauthorized'
             ], 401);
