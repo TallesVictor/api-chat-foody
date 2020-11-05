@@ -97,7 +97,7 @@ class Restaurante extends Model
     {
         $idRest = DB::table('restaurante')->where('user_id', $codigo)->value('id');
         $cardapio = DB::table('cardapio')->where('restaurante_id', $idRest)->pluck('id');
-        var_dump($cardapio);
+        // var_dump($cardapio);
         foreach ($cardapio as $key => $id) {
             echo $id;
             // Prato::where('cardapio_id', $key->id)->delete();
