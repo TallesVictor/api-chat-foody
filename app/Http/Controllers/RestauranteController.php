@@ -50,8 +50,9 @@ class RestauranteController extends Controller
         return response()->json($restaurante);
     }
 
-    public function apagar($codigo)
+    public function apagar($request)
     {
+        $codigo = $request->user()->id;
         $restaurante = new Restaurante();
         $restaurante = $restaurante->apagar($codigo);
         if (!$restaurante) {

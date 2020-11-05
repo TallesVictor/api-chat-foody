@@ -67,7 +67,7 @@ Route::group([
         'middleware' => 'auth:api'
     ], function () {
         Route::get('/', 'RestauranteController@list');
-        Route::delete('/{codigo}', 'RestauranteController@apagar');
+        Route::delete('/', 'RestauranteController@apagar');
         Route::get('/buscar/{parametro}', 'RestauranteController@search');
         Route::put('/alterar', 'RestauranteController@alterar');
         Route::get('/view', 'RestauranteController@restaurante');

@@ -3,6 +3,8 @@
 namespace App\Models;
 
 use App\Http\Controllers\AuthController;
+use App\models\Cardapio;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -93,6 +95,17 @@ class Restaurante extends Model
 
     public function apagar($codigo)
     {
-        return Restaurante::where('id', $codigo)->delete();
+        $restaurante=Restaurante::where('user_id', $codigo);
+        $idRest = $restaurante->id;
+        $cardapio =Cardapio::where('restaurante_id', $idRest);
+        foreach ($cardapio as $key) {
+            echo $key->id;
+            // Prato::where('cardapio_id', $key->id)->delete();
+        }
+        // $restaurante->delete();
+        // $cardapio->delete();
+        // User::where('id', $codigo)->delete();
+
     }
+
 }
