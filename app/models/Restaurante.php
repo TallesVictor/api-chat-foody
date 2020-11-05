@@ -68,7 +68,7 @@ class Restaurante extends Model
     {
         $id = $request->id;
         echo $id . "    " . $user;
-        $restaurante = Restaurante::where(['id', $id])->where('user_id', $user)->first();
+        $restaurante = Restaurante::where('id', $id)->where('user_id', $user)->first();
         return $restaurante;
         $restaurante->proprietario = $request->proprietario;
         $restaurante->razao_social = $request->razao_social;
