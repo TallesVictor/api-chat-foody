@@ -98,16 +98,11 @@ class Restaurante extends Model
     {
         $idRest = DB::table('restaurante')->where('user_id', $codigo)->value('id');
         $cardapio = DB::table('cardapio')->where('restaurante_id', $idRest)->pluck('id');
-        // var_dump($cardapio);
         foreach ($cardapio as $key => $id) {
-            $prato = Prato::where('cardapio_id', 8);
-            dd($prato->nome);
-            // Prato::where('cardapio_id', 8)->delete();
-            // Prato::where('cardapio_id', $key->id)->delete();
+            $prato = DB::table('prato')->where('cardapio_id', $id)->delete();
         }
-        // $restaurante->delete();
-        // $cardapio->delete();
-        // User::where('id', $codigo)->delete();
-
+        DB::table('restaurante')->where('user_id', $codigo)->delete();
+        DB::table('cardapio')->where('restaurante_id', $idRest)->delete();
+        DB::table('users')->where('id', $codigo)->delete();
     }
 }
