@@ -26,7 +26,6 @@ class AuthController extends Controller
             'password' => 'required|string|confirmed'
         ]);
         $user = new User([
-            'id' => $request->id,
             'name' => $request->name,
             'email' => $request->email,
             'password' => bcrypt($request->password)
@@ -96,8 +95,12 @@ class AuthController extends Controller
      */
     public function user(Request $request)
     {
-        // $user = new User($request->user());
-        // echo $user->id;
         return response()->json($request->user());
+    }
+
+    public function edit(Request $request)
+    {
+        $user = User::find(5);
+        return response()->json($user);
     }
 }

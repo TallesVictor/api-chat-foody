@@ -27,6 +27,7 @@ Route::group([
     ], function () {
         Route::get('logout', 'AuthController@logout');
         Route::get('user', 'AuthController@user');
+        Route::get('edit', 'AuthController@edit');
     });
 });
 
