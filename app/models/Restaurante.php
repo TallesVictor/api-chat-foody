@@ -97,8 +97,9 @@ class Restaurante extends Model
     {
         echo $codigo;
         $restaurante = Restaurante::where('user_id', 8);
-        $select = "SELECT id, proprietario, razao_social, cnpj, telefone, cep, estado, cidade, rua, numero, complemento, descricao, updated_at FROM restaurante WHERE user_id = 1 LIMIT 1";
-        return  DB::select($select);
+        // $select = "SELECT id, proprietario, razao_social, cnpj, telefone, cep, estado, cidade, rua, numero, complemento, descricao, updated_at FROM restaurante WHERE user_id = 1 LIMIT 1";
+        // return  DB::select($select);
+        return Restaurante::find(15);
         echo $idRest = $restaurante->id;
         $cardapio = Cardapio::where('restaurante_id', $idRest);
         dd($cardapio);
