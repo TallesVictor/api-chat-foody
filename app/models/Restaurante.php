@@ -45,7 +45,7 @@ class Restaurante extends Model
 
     public function search($parametro)
     {
-        $select = "SELECT id, proprietario, u.email, razao_social, cnpj, telefone, cep, estado, cidade, rua, numero, complemento, descricao, updated_at FROM restaurante r JOIN users u ON r.user_id = u.id WHERE r.user_id='$parametro' LIMIT 1";
+        $select = "SELECT r.id, proprietario, u.email, razao_social, cnpj, telefone, cep, estado, cidade, rua, numero, complemento, descricao, updated_at FROM restaurante r JOIN users u ON r.user_id = u.id WHERE r.user_id='$parametro' LIMIT 1";
         $select = DB::select($select);
         if (!$select) {
             $select = "SELECT id, proprietario, razao_social, cnpj, telefone, cep, estado, cidade, rua, numero, complemento, descricao, updated_at FROM restaurante WHERE cnpj like '%$parametro%' LIMIT 1";
