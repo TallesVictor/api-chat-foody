@@ -68,6 +68,7 @@ class Restaurante extends Model
     {
         $id = $request->codigo;
         $restaurante = Restaurante::where([['id', $id], ['user_id', $user]]);
+        return $restaurante;
         $restaurante->proprietario = $request->proprietario;
         $restaurante->razao_social = $request->razao_social;
         $restaurante->cnpj = preg_replace('/[^0-9]/', '', $request->cnpj);
