@@ -100,7 +100,14 @@ class AuthController extends Controller
 
     public function edit(Request $request)
     {
-        $user = User::find(5);
+        $user = User::find($request->id);
+
+        $user->name = $request->name;
+        $user->email = $request->email;
+        if ($request->password)
+            $user->password = $request->password;
+
+        $user->save();
         return response()->json($user);
     }
 }
