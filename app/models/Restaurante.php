@@ -97,7 +97,7 @@ class Restaurante extends Model
     {
         echo $codigo;
         $restaurante=Restaurante::where('user_id', 8);
-        return Restaurante::where('user_id', 8);
+        return  Restaurante::where('cnpj', '25025342000197');
         echo $idRest = $restaurante->id;
         $cardapio =Cardapio::where('restaurante_id', $idRest);
         dd($cardapio);
