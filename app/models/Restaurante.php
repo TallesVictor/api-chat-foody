@@ -45,11 +45,15 @@ class Restaurante extends Model
 
     public function search($parametro)
     {
-        $select = "SELECT * FROM restaurante WHERE cnpj like '%$parametro%' LIMIT 1";
+        $select = "SELECT * FROM restaurante WHERE user_id='$parametro' LIMIT 1";
         $select = DB::select($select);
         if (!$select) {
-            $select = "SELECT * FROM restaurante WHERE razao_social like '%$parametro%' LIMIT 1";
-            return  DB::select($select);
+            $select = "SELECT * FROM restaurante WHERE cnpj like '%$parametro%' LIMIT 1";
+            $select = DB::select($select);
+            if (!$select) {
+                $select = "SELECT * FROM restaurante WHERE razao_social like '%$parametro%' LIMIT 1";
+                return  DB::select($select);
+            }
         }
         return $select[0];
     }
