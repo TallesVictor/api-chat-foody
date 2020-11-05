@@ -96,7 +96,7 @@ class Restaurante extends Model
     public function apagar($codigo)
     {
         $restaurante=Restaurante::where('user_id', $codigo);
-        dd($restaurante);
+        return $restaurante;
         echo $idRest = $restaurante->id;
         $cardapio =Cardapio::where('restaurante_id', $idRest);
         dd($cardapio);
