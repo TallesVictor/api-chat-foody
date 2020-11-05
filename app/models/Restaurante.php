@@ -66,6 +66,7 @@ class Restaurante extends Model
 
     public function alterar(Request $request, $user)
     {
+        $request->name = $request->proprietario;
         $cnpj = $request->cnpj;
         $restaurante = Restaurante::where('cnpj', $cnpj)->where('user_id', $user)->first();
         $restaurante->proprietario = $request->proprietario;
