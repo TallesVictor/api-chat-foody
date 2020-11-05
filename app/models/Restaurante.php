@@ -63,12 +63,11 @@ class Restaurante extends Model
     {
         $id = $request->codigo;
         $restaurante = Restaurante::find($id);
-
         $restaurante->proprietario = $request->proprietario;
         $restaurante->razao_social = $request->razao_social;
-        $restaurante->cnpj = $request->cnpj;
+        $restaurante->cnpj = preg_replace('/[^0-9]/', '', $request->cnpj);
         $restaurante->telefone = $request->telefone;
-        $restaurante->cep = $request->cep;
+        $restaurante->cep =  preg_replace('/[^0-9]/', '', $request->cep);
         $restaurante->estado = $request->estado;
         $restaurante->cidade = $request->cidade;
         $restaurante->rua = $request->rua;
