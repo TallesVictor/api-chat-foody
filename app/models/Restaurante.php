@@ -99,7 +99,7 @@ class Restaurante extends Model
         $cardapio = DB::table('cardapio')->where('restaurante_id', $idRest)->pluck('id');
         // var_dump($cardapio);
         foreach ($cardapio as $key => $id) {
-            echo $id;
+            dd(Prato::where('cardapio_id', $id));
             // Prato::where('cardapio_id', $key->id)->delete();
         }
         // $restaurante->delete();
