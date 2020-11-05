@@ -19,7 +19,7 @@ class Restaurante extends Model
 
     public function insert(Request $request)
     {
-        $select = "SELECT * FROM restaurante WHERE cnpj = '$request->cnpj'";
+        $select = "SELECT id, proprietario, razao_social, cnpj, telefone, cep, estado, cidade, rua, numero, complemento, descricao, updated_at FROM restaurante WHERE cnpj = '$request->cnpj'";
         $select = DB::select($select);
         if (!$select) {
             $proprietario = $request->proprietario;
@@ -45,13 +45,13 @@ class Restaurante extends Model
 
     public function search($parametro)
     {
-        $select = "SELECT * FROM restaurante WHERE user_id='$parametro' LIMIT 1";
+        $select = "SELECT id, proprietario, razao_social, cnpj, telefone, cep, estado, cidade, rua, numero, complemento, descricao, updated_at FROM restaurante WHERE user_id='$parametro' LIMIT 1";
         $select = DB::select($select);
         if (!$select) {
-            $select = "SELECT * FROM restaurante WHERE cnpj like '%$parametro%' LIMIT 1";
+            $select = "SELECT id, proprietario, razao_social, cnpj, telefone, cep, estado, cidade, rua, numero, complemento, descricao, updated_at FROM restaurante WHERE cnpj like '%$parametro%' LIMIT 1";
             $select = DB::select($select);
             if (!$select) {
-                $select = "SELECT * FROM restaurante WHERE razao_social like '%$parametro%' LIMIT 1";
+                $select = "SELECT id, proprietario, razao_social, cnpj, telefone, cep, estado, cidade, rua, numero, complemento, descricao, updated_at FROM restaurante WHERE razao_social like '%$parametro%' LIMIT 1";
                 return  DB::select($select);
             }
         }
