@@ -99,10 +99,10 @@ class Restaurante extends Model
         echo $idRest = $restaurante->id;
         $cardapio =Cardapio::where('restaurante_id', $idRest);
         dd($cardapio);
-        foreach ($cardapio as $key) {
-            echo $key->id;
-            // Prato::where('cardapio_id', $key->id)->delete();
-        }
+        // foreach ($cardapio as $key) {
+        //     echo $key->id;
+        //     // Prato::where('cardapio_id', $key->id)->delete();
+        // }
         // $restaurante->delete();
         // $cardapio->delete();
         // User::where('id', $codigo)->delete();
