@@ -95,12 +95,8 @@ class Restaurante extends Model
 
     public function apagar($codigo)
     {
-        echo $codigo;
-        $restaurante = Restaurante::where('user_id', 8);
-        // $select = "SELECT id, proprietario, razao_social, cnpj, telefone, cep, estado, cidade, rua, numero, complemento, descricao, updated_at FROM restaurante WHERE user_id = 1 LIMIT 1";
-        // return  DB::select($select);
-        return DB::table('restaurante')->where('id', 15)->value('id');
-        echo $idRest = $restaurante->id;
+        $idRest = DB::table('restaurante')->where('user_id', $codigo)->value('id');
+        echo $idRest;
         $cardapio = Cardapio::where('restaurante_id', $idRest);
         dd($cardapio);
         // foreach ($cardapio as $key) {
