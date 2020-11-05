@@ -95,8 +95,8 @@ class AuthController extends Controller
      */
     public function user(Request $request)
     {
-        $user = new User($request->user());
-        echo $user->id;
+        // $user = new User($request->user());
+        // echo $user->id;
         return response()->json($request->user());
     }
 }
