@@ -45,7 +45,7 @@ class RestauranteController extends Controller
         $restaurante = new Restaurante();
         $restaurante = $restaurante->alterar($request, $user);
         if (!$restaurante) {
-            return response('Restaurante não encontrado', 404);
+            return response('Erro ao alterar restaurante', 404);
         }
         return response()->json($restaurante);
     }

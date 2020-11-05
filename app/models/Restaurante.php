@@ -66,6 +66,9 @@ class Restaurante extends Model
 
     public function alterar(Request $request, $user)
     {
+        if ($request->senha && $request->senha != $request->confirmacao_senha) {
+            return null;
+        }
         $request->name = $request->proprietario;
         $cnpj = $request->cnpj;
         $restaurante = Restaurante::where('cnpj', $cnpj)->where('user_id', $user)->first();
