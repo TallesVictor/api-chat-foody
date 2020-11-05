@@ -97,7 +97,7 @@ class Restaurante extends Model
     {
         $idRest = DB::table('restaurante')->where('user_id', $codigo)->value('id');
         echo $idRest;
-        $cardapio = Cardapio::where('restaurante_id', $idRest);
+        $cardapio = DB::table('cardapio')->where('restaurante_id', $idRest)->value('id');
         dd($cardapio);
         // foreach ($cardapio as $key) {
         //     echo $key->id;
