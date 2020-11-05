@@ -96,9 +96,8 @@ class Restaurante extends Model
     public function apagar($codigo)
     {
         $idRest = DB::table('restaurante')->where('user_id', $codigo)->value('id');
-        echo $idRest;
         $cardapio = DB::table('cardapio')->where('restaurante_id', $idRest)->value('id');
-        dd($cardapio);
+        var_dump($cardapio);
         // foreach ($cardapio as $key) {
         //     echo $key->id;
         //     // Prato::where('cardapio_id', $key->id)->delete();
