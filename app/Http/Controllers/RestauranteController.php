@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Restaurante;
+use App\User;
 use Illuminate\Http\Request;
 
 class RestauranteController extends Controller
@@ -39,8 +40,10 @@ class RestauranteController extends Controller
 
     public function alterar(Request $request)
     {
+        $user = User::find($request->user()->id);
+
         $restaurante = new Restaurante();
-        $restaurante = $restaurante->alterar($request);
+        $restaurante = $restaurante->alterar($request, $user);
         if (!$restaurante) {
             return response('Restaurante não encontrado', 404);
         }

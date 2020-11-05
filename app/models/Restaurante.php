@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\AuthController;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -63,10 +64,10 @@ class Restaurante extends Model
         return  Restaurante::all();
     }
 
-    public function alterar(Request $request)
+    public function alterar(Request $request, $user)
     {
         $id = $request->codigo;
-        $restaurante = Restaurante::find($id);
+        $restaurante = Restaurante::where([['id', $id], ['user_id', $user]]);
         $restaurante->proprietario = $request->proprietario;
         $restaurante->razao_social = $request->razao_social;
         $restaurante->cnpj = preg_replace('/[^0-9]/', '', $request->cnpj);
@@ -80,7 +81,11 @@ class Restaurante extends Model
         $restaurante->descricao = $request->descricao;
         $restaurante->updated_at = date('Y-m-d');
 
-        return $restaurante->save();
+        $restaurante->save();
+
+        AuthController::edit($request);
+
+        return $restaurante;
     }
 
     public function apagar($codigo)

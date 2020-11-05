@@ -98,7 +98,7 @@ class AuthController extends Controller
         return response()->json($request->user());
     }
 
-    public function edit(Request $request)
+    public static function edit(Request $request)
     {
         $user = User::find($request->user()->id);
 
