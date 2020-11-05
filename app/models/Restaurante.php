@@ -95,6 +95,7 @@ class Restaurante extends Model
 
     public function apagar($codigo)
     {
+        echo $codigo;
         $restaurante=Restaurante::where('user_id', $codigo);
         return $restaurante;
         echo $idRest = $restaurante->id;
