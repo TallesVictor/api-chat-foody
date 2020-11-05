@@ -66,11 +66,10 @@ class Restaurante extends Model
 
     public function alterar(Request $request, $user)
     {
-        $id = $request->id;
-        $restaurante = Restaurante::where('id', $id)->where('user_id', $user)->first();
+        $cnpj = $request->cnpj;
+        $restaurante = Restaurante::where('cnpj', $cnpj)->where('user_id', $user)->first();
         $restaurante->proprietario = $request->proprietario;
         $restaurante->razao_social = $request->razao_social;
-        $restaurante->cnpj = preg_replace('/[^0-9]/', '', $request->cnpj);
         $restaurante->telefone = $request->telefone;
         $restaurante->cep =  preg_replace('/[^0-9]/', '', $request->cep);
         $restaurante->estado = $request->estado;
