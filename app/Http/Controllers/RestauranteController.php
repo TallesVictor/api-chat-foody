@@ -56,4 +56,11 @@ class RestauranteController extends Controller
         }
         return response()->json($restaurante);
     }
+
+    public function restaurante(Request $request)
+    {
+        // $user = new User($request->user());
+        // echo $user->id;
+        return response()->json($request->user());
+    }
 }

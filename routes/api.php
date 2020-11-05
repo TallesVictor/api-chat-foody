@@ -70,5 +70,6 @@ Route::group([
         Route::delete('/{codigo}', 'RestauranteController@apagar');
         Route::get('/buscar/{parametro}', 'RestauranteController@search');
         Route::put('/alterar', 'RestauranteController@alterar');
+        Route::get('restaurante', 'RestauranteController@restaurante');
         });
   });
