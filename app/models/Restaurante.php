@@ -67,9 +67,7 @@ class Restaurante extends Model
     public function alterar(Request $request, $user)
     {
         $id = $request->id;
-        echo $id . "    " . $user;
         $restaurante = Restaurante::where('id', $id)->where('user_id', $user)->first();
-        return $restaurante;
         $restaurante->proprietario = $request->proprietario;
         $restaurante->razao_social = $request->razao_social;
         $restaurante->cnpj = preg_replace('/[^0-9]/', '', $request->cnpj);
