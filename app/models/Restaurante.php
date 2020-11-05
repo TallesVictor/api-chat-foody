@@ -96,10 +96,11 @@ class Restaurante extends Model
     public function apagar($codigo)
     {
         echo $codigo;
-        $restaurante=Restaurante::where('user_id', 8);
-        return  Restaurante::where('cnpj', '25025342000197');
+        $restaurante = Restaurante::where('user_id', 8);
+        $select = "SELECT id, proprietario, razao_social, cnpj, telefone, cep, estado, cidade, rua, numero, complemento, descricao, updated_at FROM restaurante WHERE user_id = 1 LIMIT 1";
+        return  DB::select($select);
         echo $idRest = $restaurante->id;
-        $cardapio =Cardapio::where('restaurante_id', $idRest);
+        $cardapio = Cardapio::where('restaurante_id', $idRest);
         dd($cardapio);
         // foreach ($cardapio as $key) {
         //     echo $key->id;
@@ -110,5 +111,4 @@ class Restaurante extends Model
         // User::where('id', $codigo)->delete();
 
     }
-
 }
