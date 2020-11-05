@@ -40,7 +40,7 @@ class RestauranteController extends Controller
 
     public function alterar(Request $request)
     {
-        $user = User::find($request->user()->id);
+        $user = $request->user()->id;
 
         $restaurante = new Restaurante();
         $restaurante = $restaurante->alterar($request, $user);
