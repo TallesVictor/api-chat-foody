@@ -67,6 +67,7 @@ class Restaurante extends Model
     public function alterar(Request $request, $user)
     {
         $id = $request->codigo;
+        echo $id . "    " . $user;
         $restaurante = Restaurante::where([['id', $id], ['user_id', $user]]);
         return $restaurante;
         $restaurante->proprietario = $request->proprietario;
