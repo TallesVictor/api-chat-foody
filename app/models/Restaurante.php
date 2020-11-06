@@ -23,7 +23,7 @@ class Restaurante extends Model
 
     public function insert(Request $request)
     {
-        $select = "SELECT id, proprietario, razao_social, cnpj, telefone, cep, estado, cidade, rua, numero, complemento, descricao, updated_at FROM restaurante WHERE cnpj = '$request->cnpj'";
+        $select = "SELECT id FROM restaurante WHERE cnpj = '$request->cnpj'";
         $select = DB::select($select);
         if (!$select) {
             $proprietario = $request->proprietario;
