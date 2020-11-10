@@ -85,6 +85,7 @@ class Prato extends Model
         OR c.descricao LIKE '%?%' OR  p.nome LIKE '%?%'";
         echo "<br>" . $search;
         $select = DB::select($select, [$search, $search, $search]);
+        echo "-- ".$select[0]->id;
         for ($i = 0; $i < count($select); $i++) {
 
             echo $select[$i]->id;
