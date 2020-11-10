@@ -30,10 +30,10 @@ class PratoController extends Controller
         response('Prato não encontrado', 404);
     }
 
-    public function listSearch($id)
+    public function listSearch($search)
     {
         $prato = new Prato();
-        $prato = $prato->listSearch($id);
+        $prato = $prato->listSearch($search);
         if ($prato) {
             return response()
                 ->json($prato);
