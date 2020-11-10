@@ -82,8 +82,8 @@ class Prato extends Model
         $pratoAll = array();
         $select = "SELECT  p.id
         FROM cardapio c LEFT JOIN prato p ON c.id = p.cardapio_id
-        WHERE c.nome LIKE '%?%'
-        OR c.descricao LIKE '%?%' OR  p.nome LIKE '%?%'";
+        WHERE c.nome LIKE \"%?%\"
+        OR c.descricao LIKE \"%?%\" OR  p.nome LIKE \"%?%\"";
         $select = DB::select($select, [$search, $search, $search]);
         // echo $select = "SELECT  p.id
         // FROM cardapio c LEFT JOIN prato p ON c.id = p.cardapio_id
