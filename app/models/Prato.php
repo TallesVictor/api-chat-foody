@@ -80,12 +80,11 @@ class Prato extends Model
     public function listSearch($search)
     {
         $pratoAll = array();
-        echo $select = "SELECT  p.id
+        $select = "SELECT  p.id
         FROM cardapio c LEFT JOIN prato p ON c.id = p.cardapio_id
         WHERE c.nome LIKE '%?%'
         OR c.descricao LIKE '%?%' OR  p.nome LIKE '%?%'";
-        echo "<br>" . $search;
-        $select = DB::select($select, [$search, $search]);
+        echo $select = DB::select($select, [$search, $search, $search]);
         // echo $select = "SELECT  p.id
         // FROM cardapio c LEFT JOIN prato p ON c.id = p.cardapio_id
         // WHERE c.nome LIKE '%$search%'
