@@ -48,13 +48,16 @@ Route::group([
     'prefix' => 'prato'
 ], function () {
     Route::get('/{id}', 'PratoController@list');
+    Route::get('/search/{id}', 'PratoController@listSearch');
     Route::get('listItens/{id}', 'PratoController@listItens');
 
-
-    Route::post('create', 'PratoController@create');
-    Route::delete('deleteIngrediente/{prato}/{ingrediente}', 'PratoController@deleteIngrediente');
-    Route::delete('/{id}', 'PratoController@del');
-
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::post('create', 'PratoController@create');
+        Route::delete('deleteIngrediente/{prato}/{ingrediente}', 'PratoController@deleteIngrediente');
+        Route::delete('/{id}', 'PratoController@del');
+    });
 });
 
 Route::group([
@@ -71,5 +74,5 @@ Route::group([
         Route::get('/buscar/{parametro}', 'RestauranteController@search');
         Route::put('/alterar', 'RestauranteController@alterar');
         Route::get('/view', 'RestauranteController@restaurante');
-        });
-  });
+    });
+});
