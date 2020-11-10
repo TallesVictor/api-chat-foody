@@ -52,6 +52,7 @@ class Prato extends Model
     {
         $pratoAll = array();
         $select = DB::select("SELECT id FROM prato WHERE cardapio_id=?", [$id]);
+        dd($select);
         for ($i = 0; $i < count($select); $i++) {
 
 
@@ -85,10 +86,8 @@ class Prato extends Model
         OR c.descricao LIKE '%?%' OR  p.nome LIKE '%?%'";
         echo "<br>" . $search;
         $select = DB::select($select, [$search, $search, $search]);
-        echo "-- ".$select[0]->id;
+        dd($select);
         for ($i = 0; $i < count($select); $i++) {
-
-            echo $select[$i]->id;
             $selIngrediente = " SELECT i.nome as ingrediente
                                 FROM prato p
                                 JOIN ingrediente i ON p.id = i.prato_id
