@@ -48,7 +48,7 @@ Route::group([
     'prefix' => 'prato'
 ], function () {
     Route::get('/{id}', 'PratoController@list');
-    Route::get('/search/{id}', 'PratoController@listSearch');
+    Route::get('/search/{search}', 'PratoController@listSearch');
     Route::get('listItens/{id}', 'PratoController@listItens');
 
     Route::group([
