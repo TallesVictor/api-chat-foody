@@ -89,7 +89,7 @@ class Prato extends Model
             $selIngrediente = " SELECT i.nome as ingrediente
                                 FROM prato p
                                 JOIN ingrediente i ON p.id = i.prato_id
-                                WHERE p.id=?";
+                                WHERE p.id=? LIMIT 3";
             $selIngrediente = DB::select($selIngrediente, [$select[$i]->id]);
             $ingredientes = [];
 
