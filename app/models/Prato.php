@@ -97,7 +97,7 @@ class Prato extends Model
                 $ingredientes[] = $result->ingrediente;
             }
 
-            $prato = "SELECT c.nome cardapio, r.nome restaurante, p.id prato_id, p.nome, p.preco, p.url FROM prato p JOIN cardapio c ON c.id= p.cardapio_id JOIN restaurante r JOIN r.id = c.restaurante_id WHERE p.id=?";
+            $prato = "SELECT c.nome cardapio, r.razao_social restaurante, p.id prato_id, p.nome, p.preco, p.url FROM prato p JOIN cardapio c ON c.id= p.cardapio_id JOIN restaurante r ON r.id = c.restaurante_id WHERE p.id=?";
             $prato = DB::select($prato, [$select[$i]->id]);
             if ($prato) {
                 $prato[0]->ingredientes = $ingredientes;
