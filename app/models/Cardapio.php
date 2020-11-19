@@ -31,7 +31,7 @@ class Cardapio extends Model
 
         $cardapio->nome = $request->nome;
         $cardapio->descricao = $request->descricao;
-        $cardapio->restaurante_id = $request->restaurante_id;
+        $cardapio->restaurante_id = $select[0]->id;
         $cardapio->created_at = date('Y-m-d');
         $cardapio->updated_at = date('Y-m-d');
 
