@@ -64,7 +64,8 @@ class RestauranteController extends Controller
     public function restaurante(Request $request)
     {
         $restaurante = new Restaurante();
-        $restaurante = $restaurante->search($request->user()->id);
+        echo $request->user()->id;
+        echo$restaurante = $restaurante->search($request->user()->id);
         if (!$restaurante) {
             return response('Restaurante não encontrado', 404);
         }
