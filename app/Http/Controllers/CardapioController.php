@@ -22,14 +22,6 @@ class CardapioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function teste(Request $request)
-    {
-        $json = $request->all();
-        if (!$json) {
-            return response('JSON Inválido', 401);
-        }
-        return $json;
-    }
 
     public function search($restaurante, $codigo, $nomeCardapio)
     {

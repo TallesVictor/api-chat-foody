@@ -15,12 +15,18 @@ class Cardapio extends Model
 
     protected $idUsur = 0;
 
-    function __construct(){
+    function __construct()
+    {
         $this->idUsur = Auth::id();
     }
 
     public function insert(Request $request)
     {
+
+        $select = DB::select("SELECT id FROM restaurante WHERE cnpj = ? AND user_id = ?", [$request->cnpj, $request->user()->id]);
+
+        echo $select[0]->id;
+
         $cardapio = new Cardapio();
 
         $cardapio->nome = $request->nome;
@@ -61,5 +67,4 @@ class Cardapio extends Model
         $delete = "DELETE c.* FROM cardapio c JOIN restaurante r ON c.restaurante_id = r.id WHERE c.id = ? AND r.user_id = ?";
         return DB::delete($delete, [$codigo, $this->idUsur]);
     }
-
 }
