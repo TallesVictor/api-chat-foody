@@ -22,8 +22,6 @@ class Cardapio extends Model
 
     public function insert(Request $request)
     {
-        echo "SELECT id FROM restaurante WHERE cnpj = $request->cnpj AND user_id = ".$request->user()->id. "'";
-        return null;
         $select = DB::select("SELECT id FROM restaurante WHERE cnpj = ? AND user_id = ?", [$request->cnpj, $request->user()->id]);
 
 
@@ -31,7 +29,7 @@ class Cardapio extends Model
 
         $cardapio->nome = $request->nome;
         $cardapio->descricao = $request->descricao;
-        $cardapio->restaurante_id = $select[0]->id;
+        echo $cardapio->restaurante_id = $select[0]->id;
         $cardapio->created_at = date('Y-m-d');
         $cardapio->updated_at = date('Y-m-d');
 
