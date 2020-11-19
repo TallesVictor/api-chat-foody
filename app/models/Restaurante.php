@@ -3,9 +3,6 @@
 namespace App\Models;
 
 use App\Http\Controllers\AuthController;
-use App\models\Cardapio;
-use App\models\Prato;
-use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -69,9 +66,11 @@ class Restaurante extends Model
 
     public function alterar(Request $request, $user)
     {
+
         if ($request->senha && $request->senha != $request->confirmacao_senha) {
             return null;
         }
+
         $request->name = $request->proprietario;
         $cnpj = $request->cnpj;
         $restaurante = Restaurante::where('cnpj', $cnpj)->where('user_id', $user)->first();
