@@ -22,7 +22,7 @@ class Cardapio extends Model
 
     public function insert(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
         echo $request->cnpj, $this->idUsur;
         $select = DB::select("SELECT id FROM restaurante WHERE cnpj = ? AND user_id = ?", [$request->cnpj, $this->idUsur]);
 
