@@ -64,4 +64,6 @@ class Cardapio extends Model
         $delete = "DELETE c.* FROM cardapio c JOIN restaurante r ON c.restaurante_id = r.id WHERE c.id = ? AND r.user_id = ?";
         return DB::delete($delete, [$codigo, $this->idUsur]);
     }
+
+
 }
