@@ -26,6 +26,11 @@ class Cardapio extends Model
 
         $cardapio = new Cardapio();
 
+
+        $file = $request->file('image');
+        $file->store('toPath', ['disk' => 'public']);
+
+
         $cardapio->nome = $request->nome;
         $cardapio->descricao = $request->descricao;
         $cardapio->restaurante_id = $select[0]->id;

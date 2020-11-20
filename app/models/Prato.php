@@ -32,9 +32,6 @@ class Prato extends Model
                 ->json($erro);
         }
 
-        $file = request()->file('image');
-        $file->store('toPath', ['disk' => 'public']);
-
         if (!$request->url) {
             $request->url = null;
         }
