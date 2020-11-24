@@ -16,7 +16,7 @@ class Cardapio extends Model
 
     protected $idUsur = 0;
 
-    function __construct()
+    private function __construct()
     {
         $this->idUsur = Auth::id();
         $this->restaurante =  DB::select("SELECT * FROM restaurante WHERE user_id = ?", [$this->idUsur])[0];
