@@ -2,6 +2,7 @@
 
 namespace App\models;
 
+use App\Models\Restaurante;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -18,6 +19,7 @@ class Cardapio extends Model
     function __construct()
     {
         $this->idUsur = Auth::id();
+        $this->restaurante = Restaurante::where('user_id', $this->idUsur);
     }
 
     public function insert(Request $request)
@@ -43,6 +45,7 @@ class Cardapio extends Model
 
     public function list()
     {
+        dd($this->restaurante);
         $select = "SELECT c.id, c.nome, c.descricao FROM cardapio c JOIN restaurante r ON c.restaurante_id = r.id WHERE user_id=?";
         return DB::select($select, [$this->idUsur]);
     }
