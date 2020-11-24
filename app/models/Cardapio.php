@@ -19,7 +19,7 @@ class Cardapio extends Model
     function __construct()
     {
         $this->idUsur = Auth::id();
-        $this->restaurante = Restaurante::where('user_id', $this->idUsur);
+        $this->restaurante = DB::table('restaurante')->where('user_id', $this->idUsur);
     }
 
     public function insert(Request $request)
