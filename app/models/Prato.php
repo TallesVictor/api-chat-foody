@@ -126,7 +126,7 @@ class Prato extends Model
         if ($prato) {
             $prato[0]->ingredientes = $ingredientes;
         }
-        return  $prato;
+        return  $prato[0];
     }
 
     private static function saveIngrediente($ingredientes, $id)
