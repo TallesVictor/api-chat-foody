@@ -22,7 +22,7 @@ class Cardapio extends Model
 
     public function insert(Request $request)
     {
-        $select = DB::select("SELECT id FROM restaurante WHERE cnpj = ? AND user_id = ?", [$request->cnpj, $this->idUsur]);
+        $select = DB::select("SELECT id FROM restaurante WHERE user_id = ?", [$this->idUsur]);
 
         $cardapio = new Cardapio();
 
@@ -41,10 +41,10 @@ class Cardapio extends Model
         return DB::select($select, [$codigo,  $cardapio, $restaurante]);
     }
 
-    public function list($cnpj)
+    public function list()
     {
-        $select = "SELECT c.id, c.nome, c.descricao FROM cardapio c JOIN restaurante r ON c.restaurante_id = r.id WHERE r.cnpj = ? AND user_id=?";
-        return DB::select($select, [$cnpj,  $this->idUsur]);
+        $select = "SELECT c.id, c.nome, c.descricao FROM cardapio c JOIN restaurante r ON c.restaurante_id = r.id WHERE user_id=?";
+        return DB::select($select, [$this->idUsur]);
     }
 
     public function alterar(Request $request)
