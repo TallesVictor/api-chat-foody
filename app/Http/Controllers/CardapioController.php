@@ -35,10 +35,10 @@ class CardapioController extends Controller
             ->json($cardapio);
     }
 
-    public function list($cnpj)
+    public function list()
     {
         $cardapio = new Cardapio();
-        $cardapio = $cardapio->list($cnpj);
+        $cardapio = $cardapio->list();
 
         if (!$cardapio) {
             return response('Cardapio não encontrado', 404);

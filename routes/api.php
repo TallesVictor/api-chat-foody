@@ -38,7 +38,7 @@ Route::group([
     Route::group([
         'middleware' => 'auth:api'
     ], function () {
-        Route::get('/{cnpj}', 'CardapioController@list');
+        Route::get('/', 'CardapioController@list');
         Route::post('/salvar', 'CardapioController@insert');
         Route::post('/alterar', 'CardapioController@alterar');
         Route::delete('/apagar/{codigo}', 'CardapioController@apagar');
