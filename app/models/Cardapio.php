@@ -44,7 +44,6 @@ class Cardapio extends Model
 
     public function list()
     {
-        dd($this->restaurante->cnpj);
         $select = "SELECT c.id, c.nome, c.descricao FROM cardapio c JOIN restaurante r ON c.restaurante_id = r.id WHERE user_id=?";
         return DB::select($select, [$this->idUsur]);
     }
