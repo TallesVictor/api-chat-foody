@@ -121,7 +121,7 @@ class Prato extends Model
             $ingredientes[] = $result->ingrediente;
         }
 
-        $prato = "SELECT p.nome, p.preco, p.url FROM prato p WHERE p.id=?";
+        $prato = "SELECT p.nome, p.preco as valor, p.url FROM prato p WHERE p.id=?";
         $prato = DB::select($prato, [$id]);
         if ($prato) {
             $prato[0]->ingredientes = $ingredientes;
