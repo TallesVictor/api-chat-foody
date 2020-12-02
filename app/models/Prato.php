@@ -51,6 +51,8 @@ class Prato extends Model
     public function list($id)
     {
         $pratoAll = array();
+        $select = DB::select("SELECT id FROM prato WHERE cardapio_id=?", [$id]);
+
         for ($i = 0; $i < count($select); $i++) {
 
 
