@@ -67,7 +67,7 @@ class Prato extends Model
                 $ingredientes[] = $result->ingrediente;
             }
 
-            $prato = "SELECT p.nome, p.preco valor, p.url FROM prato p WHERE p.id=?";
+            $prato = "SELECT p.id, p.nome, p.preco valor, p.url FROM prato p WHERE p.id=?";
             $prato = DB::select($prato, [$select[$i]->id]);
             if ($prato) {
                 $prato[0]->ingredientes = $ingredientes;
@@ -143,7 +143,7 @@ class Prato extends Model
         return  DB::insert($delete, [$ingrediente, $prato]);
     }
 
-    public static function del($id)
+    public static function apagar($id)
     {
         $delete = "DELETE FROM ingrediente WHERE prato_id = ?";
         DB::insert($delete, [$id]);

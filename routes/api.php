@@ -56,7 +56,7 @@ Route::group([
     ], function () {
         Route::post('create', 'PratoController@create');
         Route::delete('deleteIngrediente/{prato}/{ingrediente}', 'PratoController@deleteIngrediente');
-        Route::delete('/{id}', 'PratoController@del');
+        Route::delete('/{id}', 'PratoController@apagar');
     });
 });
 

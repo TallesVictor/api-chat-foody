@@ -58,10 +58,10 @@ class PratoController extends Controller
         return response()->json($prato);
     }
 
-    public function del($id)
+    public function apagar($id)
     {
         $prato = new Prato();
-        $prato = $prato->del($id);
+        $prato = $prato->apagar($id);
         return response()->json($prato);
     }
 }
