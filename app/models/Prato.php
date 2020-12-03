@@ -12,7 +12,6 @@ class Prato extends Model
     protected $table = "prato";
     protected $fillable = ['id', 'nome', 'preco', 'cardapio_id', 'url', 'created_at', 'updated_at'];
     protected $hidden = ['id', 'cardapio_id', 'created_at', 'updated_at'];
-    const preco = 'valor';
     public function create(Request $request)
     {
         $validator = Validator::make(
@@ -43,6 +42,8 @@ class Prato extends Model
         $prato->save();
 
         Prato::saveIngrediente($request->ingredientes, $prato->id);
+
+        $request->valor = $request->preco;
 
         return response()
             ->json($request->all());
