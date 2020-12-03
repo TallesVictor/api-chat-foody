@@ -44,6 +44,7 @@ class Prato extends Model
         Prato::saveIngrediente($request->ingredientes, $prato->id);
 
         $request->valor = $request->preco;
+        $request->valor = 999999999999;
 
         return response()
             ->json($request->all());
