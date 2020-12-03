@@ -37,14 +37,15 @@ class Prato extends Model
 
         $request->created_at = date('Y-m-d');
         $request->updated_at = date('Y-m-d');
-
         $prato = new Prato($request->all());
         $prato->save();
 
         Prato::saveIngrediente($request->ingredientes, $prato->id);
+        $prato = new Prato($request->all());
+        $prato->valor = 99999;
 
         return response()
-            ->json($request->all(), $request->valor=99999);
+            ->json($prato);
     }
 
     public function list($id)
