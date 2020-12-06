@@ -113,11 +113,12 @@ class Prato extends Model
         $pratoAll = array();
         $search = json_decode($search);
         for ($j = 0; $j < count($search); $j++) {
-            echo $search[$j];
+
             $select = "SELECT  p.id
                        FROM cardapio c LEFT JOIN prato p ON c.id = p.cardapio_id
                        WHERE p.id = ?";
             $select = DB::select($select, $search[$j]);
+            dd($select);
             for ($i = 0; $i < count($select); $i++) {
                 $selIngrediente = " SELECT i.nome as ingrediente
                                 FROM prato p
