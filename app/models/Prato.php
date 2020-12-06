@@ -111,6 +111,7 @@ class Prato extends Model
     public function listSearchId($search)
     {
         $pratoAll = array();
+        dd($search);
         for ($j = 0; $j < count($search); $j++) {
 
             $select = "SELECT  p.id
