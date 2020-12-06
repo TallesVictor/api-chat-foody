@@ -49,6 +49,7 @@ Route::group([
 ], function () {
     Route::get('/{id}', 'PratoController@list');
     Route::get('/search/{search}', 'PratoController@listSearch');
+    Route::get('/search_id/{search}', 'PratoController@listSearchId');
     Route::get('listItens/{id}', 'PratoController@listItens');
 
     Route::group([

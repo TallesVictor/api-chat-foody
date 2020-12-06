@@ -40,6 +40,16 @@ class PratoController extends Controller
         }
         response('Prato não encontrado', 404);
     }
+    public function listSearchId($search)
+    {
+        $prato = new Prato();
+        $prato = $prato->listSearchId($search);
+        if ($prato) {
+            return response()
+                ->json($prato);
+        }
+        response('Prato não encontrado', 404);
+    }
 
     public function listItens($id)
     {
