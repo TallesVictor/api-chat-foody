@@ -108,10 +108,41 @@ class Prato extends Model
         return  $pratoAll;
     }
 
+    public function listSearchId($search)
+    {
+        $pratoAll = array();
+        for ($j = 0; $j < count($search); $j++) {
+
+            $select = "SELECT  p.id
+                       FROM cardapio c LEFT JOIN prato p ON c.id = p.cardapio_id
+                       WHERE p.id = ?";
+            $select = DB::select($select, $search[$j]);
+            for ($i = 0; $i < count($select); $i++) {
+                $selIngrediente = " SELECT i.nome as ingrediente
+                                FROM prato p
+                                JOIN ingrediente i ON p.id = i.prato_id
+                                WHERE p.id=? LIMIT 3";
+                $selIngrediente = DB::select($selIngrediente, [$select[$i]->id]);
+                $ingredientes = [];
+
+                foreach ($selIngrediente as $result) {
+                    $ingredientes[] = $result->ingrediente;
+                }
+
+                $prato = "SELECT  r.razao_social restaurante, c.nome cardapio, p.id prato_id, p.nome, p.preco, p.url FROM prato p JOIN cardapio c ON c.id= p.cardapio_id JOIN restaurante r ON r.id = c.restaurante_id WHERE p.id=?";
+                $prato = DB::select($prato, [$select[$i]->id]);
+                if ($prato) {
+                    $prato[0]->ingredientes = $ingredientes;
+                }
+                array_push($pratoAll, (object) $prato[0]);
+            }
+        }
+        return  $pratoAll;
+    }
 
     public function listItens($id)
     {
-        $selIngrediente = " SELECT i.nome as ingrediente
+        $selIngrediente = "SELECT i.nome as ingrediente
                     FROM prato p
                     JOIN ingrediente i ON p.id = i.prato_id
                     WHERE p.id=?";
