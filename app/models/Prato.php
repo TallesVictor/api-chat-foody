@@ -72,14 +72,14 @@ class Prato extends Model
         if (!$request->url) {
             $request->url = null;
         }
-        $prato = new Prato();
-        $input = $request->all();
-        $prato->fill($input)->save();
+        $prato = Prato::find($request->id);
+        $prato->update($request->all());
 
         Prato::saveIngrediente($request->ingredientes, $prato->id);
         $prato = new Prato($request->all());
         $prato->valor = $prato->preco;
         $prato->ingredientes = $request->ingredientes;
+
 
         return response()
             ->json($prato);
