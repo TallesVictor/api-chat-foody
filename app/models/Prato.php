@@ -74,7 +74,8 @@ class Prato extends Model
 
         if (!$request->url) {
             $request->url = $prato->url;
-            return $request->url;
+            return response()
+            ->json($request->all());
         }
 
         $prato->update($request->all());
