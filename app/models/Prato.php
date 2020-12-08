@@ -66,19 +66,20 @@ class Prato extends Model
             $erro = (object)[];
             $erro->erro = $validator->errors();
             return response()
-                ->json($erro);
+            ->json($erro);
         }
 
+        $input = $request->all();
 
         $prato = Prato::find($request->id);
 
         if (!$request->url) {
-            $request->all($url = $prato->url);
+            $input['url'] = $prato->url;
             return response()
-            ->json($request->all());
+                ->json($input);
         }
 
-        $prato->update($request->all());
+        $prato->update($input);
 
         Prato::saveIngrediente($request->ingredientes, $prato->id);
         $prato = new Prato($request->all());
