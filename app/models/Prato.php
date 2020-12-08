@@ -70,15 +70,10 @@ class Prato extends Model
         }
 
         $input = $request->all();
-
         $prato = Prato::find($request->id);
-
         if (!$request->url) {
             $input['url'] = $prato->url;
-            return response()
-                ->json($input);
         }
-
         $prato->update($input);
 
         Prato::saveIngrediente($request->ingredientes, $prato->id);
