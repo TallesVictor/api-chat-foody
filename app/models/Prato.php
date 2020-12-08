@@ -49,6 +49,42 @@ class Prato extends Model
             ->json($prato);
     }
 
+    public function atualizar(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'id' => 'required|numeric',
+                'nome' => 'required|string',
+                'preco'     => 'required|numeric',
+                'cardapio_id'      => 'required|numeric',
+                'ingredientes'      => 'required|array|min:1',
+            ]
+        );
+
+        if ($validator->fails()) {
+            $erro = (object)[];
+            $erro->erro = $validator->errors();
+            return response()
+                ->json($erro);
+        }
+
+        if (!$request->url) {
+            $request->url = null;
+        }
+        $prato = new Prato();
+        $input = $request->all();
+        $prato->fill($input)->save();
+
+        Prato::saveIngrediente($request->ingredientes, $prato->id);
+        $prato = new Prato($request->all());
+        $prato->valor = $prato->preco;
+        $prato->ingredientes = $request->ingredientes;
+
+        return response()
+            ->json($prato);
+    }
+
     public function list($id)
     {
         $pratoAll = array();
@@ -164,6 +200,7 @@ class Prato extends Model
 
     private static function saveIngrediente($ingredientes, $id)
     {
+        DB::delete("DELETE FROM ingrediente WHERE PRATO_ID = ?", [$id]);
         for ($i = 0; $i < count($ingredientes); $i++) {
             $insert = "INSERT INTO ingrediente (NOME, PRATO_ID, CREATED_AT, UPDATED_AT) VALUES (?, ?, NOW(), NOW())";
             DB::insert($insert, [$ingredientes[$i], $id]);

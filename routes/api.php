@@ -56,6 +56,7 @@ Route::group([
         'middleware' => 'auth:api'
     ], function () {
         Route::post('create', 'PratoController@create');
+        Route::post('atualizar', 'PratoController@atualizar');
         Route::delete('deleteIngrediente/{prato}/{ingrediente}', 'PratoController@deleteIngrediente');
         Route::delete('/{id}', 'PratoController@apagar');
     });

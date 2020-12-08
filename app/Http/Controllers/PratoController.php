@@ -19,6 +19,12 @@ class PratoController extends Controller
         $prato = $prato->create($request);
         return $prato;
     }
+    public function atualizar(Request $request)
+    {
+        $prato = new Prato();
+        $prato = $prato->atualizar($request);
+        return $prato;
+    }
     public function list($id)
     {
         $prato = new Prato();
