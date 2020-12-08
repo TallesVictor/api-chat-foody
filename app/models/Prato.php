@@ -69,10 +69,11 @@ class Prato extends Model
                 ->json($erro);
         }
 
-        if (!$request->url) {
-            $request->url = null;
-        }
+
         $prato = Prato::find($request->id);
+            if (!$request->url) {
+                $request->url = $prato->url;
+            }
         $prato->update($request->all());
 
         Prato::saveIngrediente($request->ingredientes, $prato->id);
