@@ -73,7 +73,7 @@ class Prato extends Model
         $prato = Prato::find($request->id);
 
         if (!$request->url) {
-            $request->url = $prato->url;
+            $request->urls = $prato->url;
             return response()
             ->json($request->all());
         }
